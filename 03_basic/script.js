@@ -20,6 +20,7 @@ scene.add(mesh);
 
 // Camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
+// z 가 양수이면 '나를 향해' 오는 것이라 생각하면 된다. x 는 오른쪽, y 는 위쪽
 camera.position.z = 3;
 scene.add(camera);
 
