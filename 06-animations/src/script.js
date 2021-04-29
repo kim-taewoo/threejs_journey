@@ -1,5 +1,6 @@
 import "./style.css";
 import * as THREE from "three";
+import gsap from "gsap";
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
@@ -36,7 +37,10 @@ renderer.setSize(sizes.width, sizes.height);
 // let time = Date.now();
 
 // Clock
-const clock = new THREE.Clock();
+// const clock = new THREE.Clock();
+
+gsap.to(mesh.position, { dutation: 1, delay: 1, x: 2 });
+gsap.to(mesh.position, { dutation: 1, delay: 2, x: 0 });
 
 // Animation
 // 애니메이션은 마치 스탑모션과도 같다. 이동하고 사진 찍고(render), 이동하고 사진 찍고...
@@ -47,13 +51,13 @@ const tick = () => {
   // time = currentTime;
 
   // Clock
-  const elapsedTime = clock.getElapsedTime(); // 언제나 0부터 시작해서, 시간이 지난만큼을 초단위로 측정한다.
+  // const elapsedTime = clock.getElapsedTime(); // 언제나 0부터 시작해서, 시간이 지난만큼을 초단위로 측정한다.
 
   // Update objects
   // mesh.rotation.y = elapsedTime * Math.PI * 2; // 2pi * r 이 원의 둘레니까, 이렇게 하면 1초에 한 바퀴 돈다.
-  camera.position.y = Math.sin(elapsedTime);
-  camera.position.x = Math.cos(elapsedTime);
-  camera.lookAt(mesh.position);
+  // camera.position.y = Math.sin(elapsedTime);
+  // camera.position.x = Math.cos(elapsedTime);
+  // camera.lookAt(mesh.position);
 
   // Render
   renderer.render(scene, camera);
