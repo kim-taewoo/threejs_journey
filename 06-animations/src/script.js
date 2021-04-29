@@ -33,18 +33,27 @@ renderer.setSize(sizes.width, sizes.height);
 // Time
 // 화면 주사율, 컴퓨터의 성능 차이 등으로 인해 화면 업데이트 주기가 다르다.
 // 그래서 deltaTime 을 계산해서 반영해줘야 어느 컴퓨터에서건 같은 속도로 실행할 수 있다.
-let time = Date.now();
+// let time = Date.now();
+
+// Clock
+const clock = new THREE.Clock();
 
 // Animation
 // 애니메이션은 마치 스탑모션과도 같다. 이동하고 사진 찍고(render), 이동하고 사진 찍고...
 const tick = () => {
   // Time
-  const currentTime = Date.now();
-  const deltaTime = currentTime - time;
-  time = currentTime;
+  // const currentTime = Date.now();
+  // const deltaTime = currentTime - time;
+  // time = currentTime;
+
+  // Clock
+  const elapsedTime = clock.getElapsedTime(); // 언제나 0부터 시작해서, 시간이 지난만큼을 초단위로 측정한다.
 
   // Update objects
-  mesh.rotation.y += 0.001 * deltaTime;
+  // mesh.rotation.y = elapsedTime * Math.PI * 2; // 2pi * r 이 원의 둘레니까, 이렇게 하면 1초에 한 바퀴 돈다.
+  camera.position.y = Math.sin(elapsedTime);
+  camera.position.x = Math.cos(elapsedTime);
+  camera.lookAt(mesh.position);
 
   // Render
   renderer.render(scene, camera);
