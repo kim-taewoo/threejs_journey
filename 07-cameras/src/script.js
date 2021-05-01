@@ -25,6 +25,26 @@ window.addEventListener("resize", () => {
 
   // Update renderer
   renderer.setSize(sizes.width, sizes.height);
+  // 사람들이 여러 화면을 연결해놓고 오갈 때도 있기 때문에 pixelRatio 도 다시 설정하는 게 좋다.
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+});
+
+window.addEventListener("dblclick", () => {
+  const fullscreenElement =
+    document.fullscreenElement || document.webkitFullscreenElement;
+  if (!fullscreenElement) {
+    if (canvas.requestFullscreen) {
+      canvas.requestFullscreen();
+    } else if (canvas.webkitFullscreenElement) {
+      canvas.webketRequestFullscreen();
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  }
 });
 
 /**
@@ -91,7 +111,7 @@ const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
 });
 renderer.setSize(sizes.width, sizes.height);
-
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 // Animate
 const clock = new THREE.Clock();
 
