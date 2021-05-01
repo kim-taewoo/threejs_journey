@@ -14,6 +14,19 @@ window.addEventListener("mousemove", (event) => {
   console.log(cursor.x, cursor.y);
 });
 
+window.addEventListener("resize", () => {
+  // Update sizes
+  sizes.width = window.innerWidth;
+  sizes.height = window.innerHeight;
+
+  // Update Camera
+  camera.aspect = sizes.width / sizes.height;
+  camera.updateProjectionMatrix();
+
+  // Update renderer
+  renderer.setSize(sizes.width, sizes.height);
+});
+
 /**
  * Base
  */
@@ -22,8 +35,8 @@ const canvas = document.querySelector("canvas.webgl");
 
 // Sizes
 const sizes = {
-  width: 800,
-  height: 600,
+  width: window.innerWidth,
+  height: window.innerHeight,
 };
 
 // Scene
