@@ -66,6 +66,7 @@ camera.position.z = 2;
 scene.add(camera);
 
 // Contorls
+// OrbitControl 을 사용하면 드래그 회전, 오른쪽 클릭으로 이동, 줌인아웃도 된다.
 const controls = new OrbitControls(camera, canvas);
 // damping 을 사용하면, 마우스가 상호작용하지 않을때도 작동하도록 하게 하기 위해서 tick 마다 매번 update 해줘야 한다.
 controls.enableDamping = true;
