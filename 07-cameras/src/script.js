@@ -1,6 +1,18 @@
 import "./style.css";
 import * as THREE from "three";
 
+const cursor = {
+  x: 0,
+  y: 0,
+};
+
+window.addEventListener("mousemove", (event) => {
+  cursor.x = event.clientX / sizes.width - 0.5;
+  cursor.y = event.clientY / sizes.height - 0.5;
+
+  console.log(cursor.x, cursor.y);
+});
+
 /**
  * Base
  */
@@ -32,23 +44,24 @@ scene.add(mesh);
 // 그러나 모든 것을 표현하겠다고 각각 0.00000001, 999999999 같은 극단적인 값을 넣어버리면 오히려 렌더러가 계산하는 데 어려움을 겪는다.
 // 따라서 0.1, 200 정도의 일반적인 값을 넣어주는 게 좋다.
 
-// const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
+
 // OrthographicCamera 는 원근감 없이 렌더한다. 이펙트 등을 만들 때 쓰이기도 한다.
 // left, right, top, bottom 순서로 카메라가 각 방향으로 얼마나 멀리 볼 수 있는지 설정한다. 그 뒤 5, 6번째 인자로 near, far 을 추가 설정한다.
 // 그리고 그 비율대로 캔버스 크기 안에 속에 모든 걸 우겨넣기 때문에, 왜곡을 피하려면 aspectRatio 를 계산해서 넣어주자
-const aspectRatio = sizes.width / sizes.height;
-const camera = new THREE.OrthographicCamera(
-  -1 * aspectRatio,
-  1 * aspectRatio,
-  1,
-  -1,
-  0.1,
-  100
-);
-camera.position.x = 2;
-camera.position.y = 2;
+// const aspectRatio = sizes.width / sizes.height;
+// const camera = new THREE.OrthographicCamera(
+//   -1 * aspectRatio,
+//   1 * aspectRatio,
+//   1,
+//   -1,
+//   0.1,
+//   100
+// );
+// camera.position.x = 2;
+// camera.position.y = 2;
 camera.position.z = 2;
-camera.lookAt(mesh.position);
+// camera.lookAt(mesh.position);
 scene.add(camera);
 
 // Renderer
@@ -64,9 +77,12 @@ const tick = () => {
   const elapsedTime = clock.getElapsedTime();
 
   // Update objects
-  mesh.rotation.y = elapsedTime;
+  //   mesh.rotation.y = elapsedTime;
 
   // Render
+  camera.position.x = cursor.x * 3;
+  camera.position.y = cursor.y * 3;
+  camera.lookAt(mesh.position); // 중심점을 바라보게 됨.
   renderer.render(scene, camera);
 
   // Call tick again on the next frame
