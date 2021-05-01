@@ -79,10 +79,20 @@ const tick = () => {
   // Update objects
   //   mesh.rotation.y = elapsedTime;
 
-  // Render
-  camera.position.x = cursor.x * 3;
-  camera.position.y = cursor.y * 3;
+  // Update Camera
+  // 카메라가 대상을 중심으로 주변을 원형으로 돌게 하려면 어떻게 해야할까?
+  // 위아래까지 찍지 않는다면, 바닥을 원형으로 돌면 되는 것이고,
+  // 바닥을 움직이는 데는 x 축과 y 축의 변화가 필요하다.
+  // 그리고 원형으로 돌려면 그 2개의 축이 같은 값을 가지는 하나는 sin, 하나는 cos 여야 한다.
+  // 파이 값을 쓰는 이유는, 보통 2파이r 이 한바퀴를 뜻하기 때문이다.
+  // 커서 값이 0 일 때 sin(x) 값은 0이고 cos(x) 값은 1이므로 카메라는 z 축으로 1 값을 가지고 있게 된다.
+  // 그리고 sin, cos 의 변화 값은 -1 부터 1 여서 값이 너무 작으니, 그 결과값에 가중치를 곱해주어야 변화를 보기 좋다.(여기선 3)
+  camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3;
+  camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3;
+  camera.position.y = cursor.y * 5;
   camera.lookAt(mesh.position); // 중심점을 바라보게 됨.
+
+  // Render
   renderer.render(scene, camera);
 
   // Call tick again on the next frame
