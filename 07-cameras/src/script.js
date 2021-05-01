@@ -1,5 +1,6 @@
 import "./style.css";
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 const cursor = {
   x: 0,
@@ -64,6 +65,13 @@ camera.position.z = 2;
 // camera.lookAt(mesh.position);
 scene.add(camera);
 
+// Contorls
+const controls = new OrbitControls(camera, canvas);
+// damping 을 사용하면, 마우스가 상호작용하지 않을때도 작동하도록 하게 하기 위해서 tick 마다 매번 update 해줘야 한다.
+controls.enableDamping = true;
+// controls.target.z = 1
+// controls.update()
+
 // Renderer
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
@@ -87,10 +95,13 @@ const tick = () => {
   // 파이 값을 쓰는 이유는, 보통 2파이r 이 한바퀴를 뜻하기 때문이다.
   // 커서 값이 0 일 때 sin(x) 값은 0이고 cos(x) 값은 1이므로 카메라는 z 축으로 1 값을 가지고 있게 된다.
   // 그리고 sin, cos 의 변화 값은 -1 부터 1 여서 값이 너무 작으니, 그 결과값에 가중치를 곱해주어야 변화를 보기 좋다.(여기선 3)
-  camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3;
-  camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3;
-  camera.position.y = cursor.y * 5;
-  camera.lookAt(mesh.position); // 중심점을 바라보게 됨.
+  //   camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3;
+  //   camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3;
+  //   camera.position.y = cursor.y * 5;
+  //   camera.lookAt(mesh.position); // 중심점을 바라보게 됨.
+
+  // Update control
+  controls.update();
 
   // Render
   renderer.render(scene, camera);
