@@ -78,6 +78,14 @@ const scene = new THREE.Scene();
 // mesh.rotation.x = Math.PI * 0.25;
 // mesh.rotation.y = Math.PI * 0.25;
 
+// Axes Helper (화면상에 x,y,z 축을 표시해주는 헬퍼 객체. 첫번째 인자는 표시될 축의 길이)
+const axesHelper = new THREE.AxesHelper();
+scene.add(axesHelper);
+
+// lookAt 을 사용하면 어떤 object 를 바라보도록 할 수 있다.
+// camera.lookAt(mesh.position);
+
+// 여러 객체를 한 그룹에 넣어 한 번에 tranform 할 수 있다.
 const group = new THREE.Group();
 group.position.y = 1;
 group.scale.y = 2;
@@ -103,22 +111,6 @@ const cube3 = new THREE.Mesh(
 );
 cube3.position.x = 2;
 group.add(cube3);
-
-// Axes Helper (화면상에 x,y,z 축을 표시해주는 헬퍼 객체. 첫번째 인자는 표시될 축의 길이)
-const axesHelper = new THREE.AxesHelper();
-scene.add(axesHelper);
-
-// Camera
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
-// z 가 양수이면 '나를 향해' 오는 것이라 생각하면 된다. x 는 오른쪽, y 는 위쪽
-camera.position.z = 3;
-// camera.position.set(1, 1, 3);
-scene.add(camera);
-
-// lookAt 을 사용하면 어떤 object 를 바라보도록 할 수 있다.
-// camera.lookAt(mesh.position);
-
-// console.log(mesh.position.distanceTo(camera.position));
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
