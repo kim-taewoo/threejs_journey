@@ -33,45 +33,8 @@ window.addEventListener("mousemove", (event) => {
   cursor.y = event.clientY / sizes.height - 0.5;
 });
 
-window.addEventListener("resize", () => {
-  // Update sizes
-  sizes.width = window.innerWidth;
-  sizes.height = window.innerHeight;
-
-  // Update Camera
-  camera.aspect = sizes.width / sizes.height;
-  camera.updateProjectionMatrix();
-
-  // Update renderer
-  renderer.setSize(sizes.width, sizes.height);
-  // 사람들이 여러 화면을 연결해놓고 오갈 때도 있기 때문에 pixelRatio 도 다시 설정하는 게 좋다.
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-});
-
-window.addEventListener("dblclick", () => {
-  const fullscreenElement =
-    document.fullscreenElement || document.webkitFullscreenElement;
-  if (!fullscreenElement) {
-    if (canvas.requestFullscreen) {
-      canvas.requestFullscreen();
-    } else if (canvas.webkitFullscreenElement) {
-      canvas.webketRequestFullscreen();
-    }
-  } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    }
-  }
-});
-
 const canvas = document.querySelector("canvas.webgl");
-
-// Scene
 const scene = new THREE.Scene();
-
-// Object
 const mesh = new THREE.Mesh(
   new THREE.BoxGeometry(1, 1, 1, 5, 5, 5),
   new THREE.MeshBasicMaterial({ color: 0xff0000 })
