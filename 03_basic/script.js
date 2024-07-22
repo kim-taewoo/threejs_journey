@@ -57,7 +57,7 @@ const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
 // 위에서 mesh 와 camera 를 만들었는데, 위치를 설정하지 않았기 때문에 카메라가 mesh 안에 있고, 따라서 아무것도 찍히지 않는다.
 // 그래서 위치를 조절해 줘야 하는데, 어떤 객체(카메라도 객체)를 transform 하는 건 크게 3가지다.
 // 1. position, 2. rotation, 3. scale
-// z 가 양수이면 '나를 향해' 오는 것이라 생각하면 된다. x 는 오른쪽, y 는 위쪽 (3js 디폴트설정이 그렇단 것이며 x,y,z 방향은 어떤 툴이냐에 따라 다를 수 있다.)
+// z 가 양수이면 '나를 향해' 오는 것이라 생각하면 된다. x  는 오른쪽, y 는 위쪽 (3js 디폴트설정이 그렇단 것이며 x,y,z 방향은 어떤 툴이냐에 따라 다를 수 있다.)
 camera.position.z = 3;
 scene.add(camera); // 카메라도 결국 렌더러가 인식해서 써야하니 Scene 에 추가해야 된다.
 
