@@ -1,9 +1,9 @@
-## Geometries
+## Geometry
 
-Geometies 란건 `Vertices` & `faces` 로 이루어져 있다. (vertices 의 단수형은 vertex 이다.)
+Geometry 란건 `Vertices` & `faces` 로 이루어져 있다. (vertices 의 단수형은 vertex 이다.)
 vertices 는 3d 공간상의 좌표점들이다.
 faces 는 vertices 들을 join 해서 만든 면이다.
-geometries 는 meshes 에 사용될 수 있는데, `Particles` 에도 사용가능하다. 따라서 meshes 에만 사용할 수 있는 것은 아니다.
+geometry 는 meshes 에 사용될 수 있는데, `Particles` 에도 사용가능하다. 따라서 meshes 에만 사용할 수 있는 것은 아니다.
 
 각각의 vertex 는 단순히 좌표뿐 아니라 다른 정보들도 가질 수 있다.
 
@@ -60,5 +60,6 @@ geometry.setAttribute("position", positionsAttribute);
 
 ## Index
 
-하나의 vertex 를 여러 face 에서 공유하는 것을 명시해서 성능 향상을 가져올 수 있다.
+하나의 vertex 를 여러 face 에서 공유하는 vertices 를 명시해서 성능 향상을 가져올 수 있다.
+이것도 buffer attribute 로 존재하기 때문에 거기 값들을 다 넘겨주면 된다.
 그러나 복잡하니.. 일단 알고만 넘어가자.

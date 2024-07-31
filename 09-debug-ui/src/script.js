@@ -76,7 +76,7 @@ gui
   .step(0.01)
   .name("elevation");
 gui.add(mesh, "visible");
-gui.add(material, "wireframe");
+gui.add(material, "wireframe"); // 혹은 mesh.material 을 넣어도 된다. 어차피 mesh 가 geomery 와 material 로 만들어지기 때문이다.
 
 // material 의 color 속성은 Color 클래스의 인스턴스이기 때문에
 // 위 다른 속성들처럼 단순히 값을 대입한다고 해서 바로 값을 수정할 수 없다.
