@@ -93,7 +93,7 @@ matcap 들을 제공하는 github 도 있고 자신만의 [matcap 을 만들 수
 
 # MeshLambertMaterial
 
-이 Material 부터는 빛이 필요하다. MeshbasicMaterial 과 같은 properties 를 제공하나, 빛과 관련된 properties 들이 있다. 근데 사실 이 Material 보다 좋은 게 많아서 굳이 쓸 필요 없는 편이다.
+이 Material 부터는 빛이 필요하다. MeshbasicMaterial 과 같은 properties 를 제공하나, 빛과 관련된 properties 들이 있다. 이 Material 보다 좋은 게 많아서 굳이 쓸 필요 없는 편이지만 성능이 좋은 material 이라서, 단순히 빛을 반영하는 성능위주의 작업을 할 때는 고려할만하다.
 
 # MeshPhongMaterial
 
