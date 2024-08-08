@@ -151,3 +151,9 @@ minFilter 에 NearestFilter 를 쓴다면 mipmapping 이 필요없다.
 그래서 `texture.generateMipmaps = false` 를 해줌으로써 불필요한 mipmaps 를 생성하지 않도록 할 수 있다. (GPU 에 작은 사이즈의 텍스쳐만 전달되게 되므로 성능향상)
 
 ## Texture Format and Optimization
+
+텍스쳐를 사용할 때 크게 아래 3가지를 유의해야 한다.
+
+- weight
+- size
+- data
